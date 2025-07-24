@@ -20,6 +20,8 @@ vect2& vect2::operator=(const vect2& rhs)
     return *this;
 }
 
+vect2::~vect2() {}
+
 int vect2::getX() const
 {
     return this->x;
@@ -112,7 +114,7 @@ vect2 vect2::operator-(int scalar) const
     return vect2(this->x - scalar, this->y - scalar);
 }
 
-vect2 vect2::operator-()
+vect2 vect2::operator-() const
 {
     return vect2(-(this->x), -(this->y));
 }
@@ -171,11 +173,6 @@ vect2& vect2::operator*=(int scalar)
     return *this;
 }
 
-vect2 operator*(int scalar, const vect2& rhs)
-{
-    return vect2(scalar * rhs.getX(), scalar * rhs.getY());
-}
-
 vect2 vect2::operator/(const vect2& rhs) const
 {
     return vect2(this->x / rhs.getX(), this->y / rhs.getY());
@@ -198,6 +195,26 @@ vect2& vect2::operator/=(int scalar)
     this->x /= scalar;
     this->y /= scalar;
     return *this;
+}
+
+vect2 operator+(int scalar, const vect2& rhs)
+{
+    return vect2(scalar + rhs.getX(), scalar + rhs.getY());
+}
+
+vect2 operator-(int scalar, const vect2& rhs)
+{
+    return vect2(scalar - rhs.getX(), scalar - rhs.getY());
+}
+
+vect2 operator*(int scalar, const vect2& rhs)
+{
+    return vect2(scalar * rhs.getX(), scalar * rhs.getY());
+}
+
+vect2 operator/(int scalar, const vect2& rhs)
+{
+    return vect2(scalar / rhs.getX(), scalar / rhs.getY());
 }
 
 std::ostream& operator<<(std::ostream& out, const vect2& rhs)
